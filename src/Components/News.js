@@ -64,13 +64,11 @@ export class News extends Component {
   //   }};
 
   fetchMoreData = async() => {
-    this.setState({
-      page: this.state.page +1
-    })
-    let Url = `https://newsapi.org/v2/top-headlines?q=${''}&country=${this.props.country}&category=${this.props.category}&apiKey=760eaffef38448f995a399fa3d68f886&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    let Url = `https://newsapi.org/v2/top-headlines?q=${''}&country=${this.props.country}&category=${this.props.category}&apiKey=760eaffef38448f995a399fa3d68f886&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
     let info = await fetch(Url);
     let parsedData = await info.json();
     this.setState({
+      page: this.state.page +1,
       articles: this.state.articles.concat(parsedData.articles),
       total: parsedData.totalResults,
     });
